@@ -1,2 +1,0 @@
-"use strict";(self["webpackChunkgrim_vue"]=self["webpackChunkgrim_vue"]||[]).push([[827],{5827:function(n,u,e){e.r(u),e.d(u,{default:function(){return k}});var r=e(6768);const t=(0,r.Lk)("h1",null,"ようこそページ",-1),l=(0,r.Lk)("p",null,"ここはようこそページです。このページはVue 3.0で作られています。",-1),c=[t,l];function a(n,u,e,t,l,a){return(0,r.uX)(),(0,r.CE)("div",null,c)}var i={name:"Home"},s=e(1241);const f=(0,s.A)(i,[["render",a]]);var k=f}}]);
-//# sourceMappingURL=827.e7aa7b9a.js.map
