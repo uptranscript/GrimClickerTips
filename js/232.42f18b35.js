@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunkgrim_vue"]=self["webpackChunkgrim_vue"]||[]).push([[232],{5232:function(n,u,e){e.r(u),e.d(u,{default:function(){return f}});var r=e(6768);const l=(0,r.Lk)("h1",null,"スキル構築",-1),t=(0,r.Lk)("p",null,"このページでは、スキル構築について学ぶことができます。",-1),c=[l,t];function i(n,u,e,l,t,i){return(0,r.uX)(),(0,r.CE)("div",null,c)}var s={name:"Skills"},a=e(1241);const k=(0,a.A)(s,[["render",i]]);var f=k}}]);
+//# sourceMappingURL=232.42f18b35.js.map

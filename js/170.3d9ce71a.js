@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunkgrim_vue"]=self["webpackChunkgrim_vue"]||[]).push([[170],{9170:function(n,u,e){e.r(u),e.d(u,{default:function(){return k}});var r=e(6768);const t=(0,r.Lk)("h1",null,"序盤の攻略",-1),l=(0,r.Lk)("p",null,"ここでは、ゲームやプロジェクトの序盤の攻略法について説明します。",-1),a=[t,l];function c(n,u,e,t,l,c){return(0,r.uX)(),(0,r.CE)("div",null,a)}var i={name:"Strategy"},s=e(1241);const f=(0,s.A)(i,[["render",c]]);var k=f}}]);
+//# sourceMappingURL=170.3d9ce71a.js.map
