@@ -5,18 +5,24 @@
         <div class="image-container" style="position: relative; display: inline-block;">
           <!-- 画像を表示 -->
           <img :src="gameImage" alt="ゲームのスクリーンショット" class="responsive-image" />
-          <!-- スキルの位置に応じたツールチップ -->
+          <!-- スキルの位置に応じたアイコン -->
           <template v-for="(skill, index) in skills" :key="`skill-${index}`">
             <v-img :src="skill.image" :alt="`スキル${index + 1}`" class="skill-image"
-              :style="{ top: skill.top, left: skill.left }">
-              <v-tooltip activator="parent" location="bottom">
-                <h2>{{ skill.title }}</h2>
-                <div v-for="(line, lineIndex) in skill.description.split('\n')" :key="`line-${index}-${lineIndex}`">
-                  <p v-if="line">{{ line }}</p>
-                </div>
-              </v-tooltip>
+              :style="{ top: skill.top, left: skill.left }" @click="toggleDialog(index)">
             </v-img>
           </template>
+          <!-- フローティングカード -->
+          <v-card v-if="showDetail" class="floating-card" :style="{ top: `${detailTop}px`, left: `${detailLeft}px` }">
+            <v-card-title>{{ selectedSkill.title }}</v-card-title>
+            <v-card-text>
+              <div v-for="(line, lineIndex) in selectedSkill.description.split('\n')" :key="`line-${selectedSkillIndex}-${lineIndex}`">
+                <p :class="{ 'empty-line': line === '' }">{{ line || ' ' }}</p>
+              </div>
+            </v-card-text>
+            <v-card-actions>
+              <v-btn color="primary" text @click="showDetail = false">閉じる</v-btn>
+            </v-card-actions>
+          </v-card>
         </div>
       </v-container>
     </v-main>
@@ -24,38 +30,42 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import gameImage from '@/assets/game-image.jpg';
-import { skills as importedSkills } from '@/assets/skills.js'; // スキルデータのインポート
+import { skills as importedSkills } from '@/assets/skills.js';
 
 const skills = ref(importedSkills);
+const selectedSkillIndex = ref(null);
+const showDetail = ref(false);
+const detailTop = ref(0);
+const detailLeft = ref(0);
 
+const toggleDialog = (index) => {
+  selectedSkillIndex.value = index;
+  showDetail.value = !showDetail.value;
+  // ここでフローティングカードの位置を調整するロジックを追加
+};
 
+const selectedSkill = computed(() => {
+  return skills.value[selectedSkillIndex.value] || { title: '', description: '' };
+});
 </script>
 
 <style>
 .responsive-image {
   width: 100%;
-  /* 画像がコンテナの幅に応じてリサイズされるようにする */
   height: auto;
-  /* 画像の高さを自動調整してアスペクト比を保持 */
-}
-
-.skill-point {
-  position: absolute;
-  width: 5%;
-  height: 5%;
-  background-color: rgba(255, 255, 255, 0.5);
-  /* 視認性のための背景色、必要に応じて調整 */
-  border-radius: 50%;
-  cursor: pointer;
 }
 
 .skill-image {
   position: absolute;
-  /* ゲーム画像に対する相対位置で配置 */
   width: 8%;
   height: 8%;
-  /* 必要に応じて、widthとheightでサイズを調整 */
+}
+
+.floating-card {
+  position: absolute;
+  z-index: 10; /* 必要に応じて調整 */
+  /* ここにその他のスタイルを追加 */
 }
 </style>
